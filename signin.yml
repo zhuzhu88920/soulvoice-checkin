@@ -24,4 +24,6 @@ jobs:
         env:
           COOKIE: ${{ secrets.COOKIE }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
+          SIGNIN_URL: 'https://pt.soulvoice.club/attendance.php'
+          SITE_NAME: '聆音'
         run: python signin.py
