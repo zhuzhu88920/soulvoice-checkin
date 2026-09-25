@@ -89,7 +89,11 @@ def send_bark(title, content, bark_push_url):
         # 对 title 和 content 进行 URL 编码，避免特殊字符导致 URL 失效
         encoded_title = quote(str(title), safe='')
         encoded_content = quote(str(content), safe='')
+        # 推送分组，默认为聆音Club签到
+        bark_group = (os.getenv('BARK_GROUP') or '聆音Club签到').strip()
         full_url = f"{bark_url}/{encoded_title}/{encoded_content}"
+        if bark_group:
+            full_url += f"?group={quote(bark_group, safe='')}"
         
         response = requests.get(full_url, timeout=10)
         result = response.json()
